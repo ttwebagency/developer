@@ -57,4 +57,4 @@ Gatsby configuration files can be renamed to use TypeScript file extensions:
 + `gatsby-ssr.js` to `gatsby-ssr.tsx`
 
 ### Plugins
-We can install the [gatsby-plugin-typescript](gatbsy-plugin-typescript plugin) that allows Gatsby to run TypeScript files with the `.ts` and `.tsx` file extensions. This plugin is automatically included with Gatsby so we only need install it if we need to extend the default configuration options. This plugin does not run type checking during `build time`.
+We can install the [gatbsy-plugin-typescript plugin](https://www.gatsbyjs.com/plugins/gatsby-plugin-typescript/) that allows Gatsby to run TypeScript files with the `.ts` and `.tsx` file extensions. This plugin is automatically included with Gatsby so we only need install it if we need to extend the default configuration options. This plugin does not run type checking during `build time`.
