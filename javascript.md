@@ -7,6 +7,10 @@
 ## Modules
 A module is a piece of code in a file that we can call and use from other files. Both `CommonJS` and `ESModules (ESM)` are two examples of widely used module types.
 
+The `ES6 (ECMAScript 2015)` specification introduced `modules` to the JavaScript language. This allowed the use of `import` and `export` statements.
+
+Modules are automatically interpreted in `strict mode`.
+
 ### CommonJS
 CommonJS is a standard used to implement modules in JavaScript from a project developed by Kevin Dangoor at Mozilla in 2009. This was for use in Node projects where Node only supported `CommonJS` at the time, but Node can also now support `ESModules (ESM)` which is a more modern approach.
 
@@ -60,7 +64,7 @@ const mainFunction = () => {
 ```
 
 ## ESModules
-ESModules (ESM) were introduced with `ES6 (ES2015)` to help standardise how JavaScript modules work and to implement the features in browsers. ESModules are supported by browsers and server-side apps with Node.
+ESModules (ESM) were introduced with `ES6 (ES2015)` to help standardise how JavaScript modules work and to implement the features in browsers. ESModules are supported by browsers and server-side apps with Node. ESModules (ESM) are native to JavaScript.
 
 Within the `package.json` file, add `"type": "module"`:
 
