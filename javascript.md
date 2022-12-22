@@ -63,7 +63,7 @@ const mainFunction = () => {
 }
 ```
 
-## ESModules
+### ESModules
 ESModules (ESM) were introduced with `ES6 (ES2015)` to help standardise how JavaScript modules work and to implement the features in browsers. ESModules are supported by browsers and server-side apps with Node. ESModules (ESM) are native to JavaScript.
 
 Within the `package.json` file, add `"type": "module"`:
