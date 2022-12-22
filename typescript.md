@@ -2,6 +2,7 @@
 
 + [Configuration File](#configuration-file)
 	+ [Create the Configuration File](#create-the-configuration-file)
+	+ [Configuration Options](#configuration-options)
 + [Gatsby](#gatsby)
 	+ [Install TypeScript](#install-typescript)
 	+ [Rename Files](#rename-files)
@@ -21,6 +22,15 @@ To create the TypeScript configuration file, we can either create a file named `
 ```shell
 $ npx tsc --init
 ```
+
+### Configuration Options
+Once the `tsconfig.json` file has been created we can add configuration options to override the default settings of the TypeScript compiler. Configuration options can be found here: `https://www.typescriptlang.org/tsconfig`
+
++ `jsx` - this options sets how `JSX` syntax is handled in `.tsx` files. If we use the `preserve` option, this leaves `JSX` unchanged. This only affects output of JS files that are `.tsx` files.
++ `strict` - when this is set to `true`, this option enables TypeScript type-checking at `build time`. This does not run by default.
++ `resolveJsonModule` - when this is set to `true`, this allows modules with a `.json` extension, which is common practice in Node projects, to be imported. TypeScript does not support resolving JSON by default. Resolves the error: `Cannot find module './settings.json'. Consider using '--resolveJsonModule' to import module with '.json' extension.`
++ `noUnusedLocals` - when this is set to `true`, this reports errors on unused variables to show an error if a variable is declared but not used. Error example: `'variableNameHere' is declared but its value is never read.`
++ `noUnusedParameters` - when this is set to `true`, this reports errors on unused parameters in functions to show an error. Error example: `'parameterNameHere' is declared but its value is never read.`.
 
 ## Gatsby
 
