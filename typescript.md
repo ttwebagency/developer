@@ -42,6 +42,7 @@ Once the `tsconfig.json` file has been created we can add configuration options 
 + `allowJS` - Set to `true`, allows JavaScript files to be imported inside our project. Instead of just `.ts` and `.tsx` files. Will usually raise an error if not set to `true`.
 + `forceConsistentCasingInFileNames` - If set to `true`, allows TypeScript to check the case sensitivity rules of the file system. For example, an error will be thrown if `fileText.ts` is being imported using `FileTest.ts`.
 + `noFallthroughCasesInSwitch` - If set to `true`, reports errors for fallthrough cases in switch statements. This ensures that a switch statement does not have an empty-case including either `break` or `return` to avoid a `fallthrough bug` being introduced into the code.
++ `removeComments` - Setting this to `false` allows there to be comments present after any TypeScript files have been converted to JavaScript.
 
 We need to match the configuration options in the `tsconfig.json` file to match the needs of our project.
 
@@ -98,7 +99,7 @@ To allow TypeScript in Gatsby to use file extensions of `.js`, `.jsx`, `.ts`, an
 ### Plugins
 We can install the [gatbsy-plugin-typescript plugin](https://www.gatsbyjs.com/plugins/gatsby-plugin-typescript/) that allows Gatsby to run TypeScript files with the `.ts` and `.tsx` file extensions. This plugin is automatically included with Gatsby so we only need install it if we need to extend the default configuration options. This plugin does not run type checking during `build time`.
 
-We can configure the `gatsby-config.js` or `gatsby-config.ts` like so:
+We can configure the `gatsby-plugin-typescript` plugin in `gatsby-config.js` or `gatsby-config.ts` like so:
 
 ```javascript
 module.exports = {
@@ -114,3 +115,5 @@ module.exports = {
 	],
 }
 ```
+
+This will override the default `@babel/preset-typescript` configuration.
