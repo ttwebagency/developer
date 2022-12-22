@@ -6,6 +6,7 @@
 + [Gatsby](#gatsby)
 	+ [Install TypeScript](#install-typescript)
 	+ [Rename Files](#rename-files)
+	+ [Update Build Scripts](#update-build-scripts)
 	+ [Plugins](#plugins)
 
 TypeScript is an `open-source` programming language developed and maintained by `Microsoft` and is a subset of `JavaScript`. TypeScript files usually have the file extension of `.ts` or `.tsx`.
@@ -41,6 +42,8 @@ Once the `tsconfig.json` file has been created we can add configuration options 
 + `allowJS` - Set to `true`, allows JavaScript files to be imported inside our project. Instead of just `.ts` and `.tsx` files. Will usually raise an error if not set to `true`.
 + `forceConsistentCasingInFileNames` - If set to `true`, allows TypeScript to check the case sensitivity rules of the file system. For example, an error will be thrown if `fileText.ts` is being imported using `FileTest.ts`.
 + `noFallthroughCasesInSwitch` - If set to `true`, reports errors for fallthrough cases in switch statements. This ensures that a switch statement does not have an empty-case including either `break` or `return` to avoid a `fallthrough bug` being introduced into the code.
+
+We need to match the configuration options in the `tsconfig.json` file to match the needs of our project.
 
 One key take away is that these options are mostly about what TypeScript compiles `into` and not what it compiles `from`. This is different from `Babel` where both `input (parsing)` and `output (compilation)` settings exist, so no matter how we configure TypeScript, the language syntax remains the same.
 
@@ -78,5 +81,36 @@ Gatsby configuration files can be renamed to use TypeScript file extensions:
 + `gatsby-browser.js` to `gatsby-browser.tsx`
 + `gatsby-ssr.js` to `gatsby-ssr.tsx`
 
+### Update Build Scripts
+To allow TypeScript in Gatsby to use file extensions of `.js`, `.jsx`, `.ts`, and `.tsx`, we can update the `package.json` file.
+
+```javascript
+"scripts": {
+	"build": "gatsby build && tsc",
+	"develop": "gatsby develop",
+	"format": "prettier --write 'src/**/*.{js,jsx,ts,tsx}'",
+	"start": "npm run develop",
+	"serve": "gatsby serve",
+	"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+},
+```
+
 ### Plugins
 We can install the [gatbsy-plugin-typescript plugin](https://www.gatsbyjs.com/plugins/gatsby-plugin-typescript/) that allows Gatsby to run TypeScript files with the `.ts` and `.tsx` file extensions. This plugin is automatically included with Gatsby so we only need install it if we need to extend the default configuration options. This plugin does not run type checking during `build time`.
+
+We can configure the `gatsby-config.js` or `gatsby-config.ts` like so:
+
+```javascript
+module.exports = {
+	plugins: [
+		{
+			resolve: 'gatsby-plugin-typescript',
+			options: {
+				isTSX: true, // defaults to false
+				jsxPragma: 'jsx', // defaults to "React"
+				allExtensions: true // defaults to false
+			},
+		},
+	],
+}
+```
