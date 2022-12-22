@@ -146,6 +146,7 @@ In the previous examples, we exported multiple named exports and imported them i
 
 ```javascript
 // functions.js
+
 export default function sum(x, y) {
     return x + y
 }
