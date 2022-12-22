@@ -2,6 +2,7 @@
 
 + [Modules](#modules)
     + [CommonJS](#commonjs)
+    + [ESModules](#esmodules)
 
 ## Modules
 A module is a piece of code in a file that we can call and use from other files. Both `CommonJS` and `ESModules (ESM)` are two examples of widely used module types.
@@ -55,5 +56,41 @@ If we want to import multiple functions from the module:
 const mainFunction = () => {
     myFunc()
     anotherFunc()
+}
+```
+
+## ESModules
+ESModules (ESM) were introduced with `ES6 (ES2015)` to help standardise how JavaScript modules work and to implement the features in browsers. ESModules are supported by browsers and server-side apps with Node.
+
+Within the `package.json` file, add `"type": "module"`:
+
+```javascript
+// package.json
+{
+    "type": "module"
+}
+```
+
+We may get an error if we try to implement ESModules (ESM) on Node without using the `type` property.
+
+To create an `ESModule (ESM)` in JavaScript:
+
+```javascript
+// module.js
+
+const myFunc = () => {
+    console.log("This is a function")
+}
+
+export { myFunc }
+```
+
+To import the module:
+
+```javascript
+import { myFunc } from "./module.js"
+
+const mainFunction = () => {
+    myFunc()
 }
 ```
