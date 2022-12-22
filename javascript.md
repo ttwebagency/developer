@@ -3,6 +3,7 @@
 + [Modules](#modules)
     + [CommonJS](#commonjs)
     + [ESModules](#esmodules)
+    + [Default](#default)
 
 ## Modules
 A module is a piece of code in a file that we can call and use from other files. Both `CommonJS` and `ESModules (ESM)` are two examples of widely used module types.
@@ -10,6 +11,21 @@ A module is a piece of code in a file that we can call and use from other files.
 The `ES6 (ECMAScript 2015)` specification introduced `modules` to the JavaScript language. This allowed the use of `import` and `export` statements.
 
 Modules are automatically interpreted in `strict mode`.
+
++ Modules do not add anything to the global `window` scope.
++ Modules always are in `strict` mode.
++ Loading the same module twice in the same file will have no effect, as modules are only executed once.
++ Modules require a server environment.
+
+Modules are often used alongside bundlers like `Webpack` for increased browser support, but they are also available for use directly in browsers.
+
+Because of the `CORS policy`, modules must be used in a server environment. This can be setup locally with `http-server`.
+
+To ensure our code gets loaded as a module in `HTML` and not loaded as a regular script, add `type="module"` to the `<script>` tag. Any code that uses `import` or `export` must use this attribute.
+
+```javascript
+<script type="module" src="functions.js"></script>
+```
 
 ### CommonJS
 CommonJS is a standard used to implement modules in JavaScript from a project developed by Kevin Dangoor at Mozilla in 2009. This was for use in Node projects where Node only supported `CommonJS` at the time, but Node can also now support `ESModules (ESM)` which is a more modern approach.
@@ -97,4 +113,46 @@ import { myFunc } from "./module.js"
 const mainFunction = () => {
     myFunc()
 }
+```
+
+In this example, we have a module named `functions.js` that allows the functions to be exported and available to any other module.
+
+```javascript
+export const sum(x, y) {
+    return x + y
+}
+
+export const difference(x, y) {
+    return x - y
+}
+
+export const product(x, y) {
+    return x * y
+}
+
+export const quotient(x, y) {
+    return x / y
+}
+```
+
+Now to use these functions, we can `import` them into the code.
+
+```javascript
+import { sum, difference, product, quotient } from "./functions.js"
+```
+
+### Default
+In the previous examples, we exported multiple named exports and imported them individually or as one object. Modules can contain a default export using the `default` keyword. A `default` export will not be imported with curly brackets, but will be directly imported into a named identifier.
+
+```javascript
+// functions.js
+export default function sum(x, y) {
+    return x + y
+}
+```
+
+We can then import:
+
+```javascript
+import sum from "./functions.js"
 ```
