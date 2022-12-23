@@ -43,7 +43,7 @@ Once the `tsconfig.json` file has been created we can add configuration options 
 + `forceConsistentCasingInFileNames` - If set to `true`, allows TypeScript to check the case sensitivity rules of the file system. For example, an error will be thrown if `fileText.ts` is being imported using `FileTest.ts`.
 + `noFallthroughCasesInSwitch` - If set to `true`, reports errors for fallthrough cases in switch statements. This ensures that a switch statement does not have an empty-case including either `break` or `return` to avoid a `fallthrough bug` being introduced into the code.
 + `removeComments` - Setting this to `false` allows there to be comments present after any TypeScript files have been converted to JavaScript.
-+ `outDir` - setting this to `generated` will avoid `TS5055 errors` errors when running the frontend build.
++ `outDir` - setting this to `generated` will avoid `TS5055 errors` errors when running the frontend build: `https://stackoverflow.com/questions/40460790/getting-a-storm-of-error-ts5055-messages-on-every-typescript-compile-in-vs-cod`
 
 We need to match the configuration options in the `tsconfig.json` file to match the needs of our project.
 
