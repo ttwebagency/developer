@@ -49,6 +49,39 @@ We need to match the configuration options in the `tsconfig.json` file to match 
 
 One key take away is that these options are mostly about what TypeScript compiles `into` and not what it compiles `from`. This is different from `Babel` where both `input (parsing)` and `output (compilation)` settings exist, so no matter how we configure TypeScript, the language syntax remains the same.
 
+The `tsconfig.json` configuration file example:
+
+```javascript
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "lib": ["dom", "esnext"],
+    "strict": true,
+    "sourceMap": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "isolatedModules": true,
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "removeComments": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "outDir": "generated"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "public"
+  ]
+}
+```
+
 ## Gatsby
 
 ### Install TypeScript
