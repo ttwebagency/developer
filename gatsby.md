@@ -4,6 +4,7 @@
 + [Development](#development)
 + [TypeScript](typescript.md#gatsby)
 + [SEO](seo.md#gatsby)
++ [Testing](testing.md#gatsby)
 
 ## Install and Setup
 To install `Gatsby` we first need to install the `Gatsby CLI`. This should be installed globally and this will allow us to use the `gatsby` command in the terminal to create Gatsby sites.
