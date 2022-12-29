@@ -113,10 +113,22 @@ To run the tests using this script:
 $ npm run test
 ```
 
+A `snapshot` file will generate when the `test` script runs.
+
 ### Writing Tests
 Test files can either be put into a `__tests__` directory or we can put test files elsewhere, usually next to the component itself. Test files have the file extension of `.spec.js` or `.test.js`. For example, if we had a component named `heading.js` then the test file could be named `heading.test.js`.
 
-This is a simple test file for a `Heading` component. The test file is named `headings.test.js` and will check if the component renders before generating a `snapshot` file.
+```
+src /
+|__ components /
+    |__ headings /
+        |__ __snapshots__ /
+            headings.test.js.snap
+        headings.test.js
+        index.js
+```
+
+This is a simple test file for a `Heading` component. The test file is named `headings.test.js` and will check if the component renders before generating a `snapshot` file. The snapshot file will be found inside the `__snapshots__` directory and named `headings.test.js.snap`.
 
 ```javascript
 // src/components/headings/headings.test.js
