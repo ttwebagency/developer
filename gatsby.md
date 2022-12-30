@@ -35,9 +35,3 @@ $ npm run develop
 ```
 
 This will start the development server and will open the Gatsby site in a browser window/tab: `http://localhost:8000/`. To stop the development server running in the terminal, hit `CTRL` + `C` on the keyboard.
-
-Gatsby can be run in `debug` mode by using the `debug` flag when starting the development server.
-
-```shell
-$ npm run develop --debug
-```
