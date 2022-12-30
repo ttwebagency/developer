@@ -1,11 +1,42 @@
 # Testing
 
++ [Introduction to Tests](#introduction-to-tests)
+	+ [Snapshots](#snapshots)
 + [Gatsby](#gatsby)
     + [Setup](#setup)
     + [Configuration](#configuration)
     + [Running Tests](#running-tests)
     + [Code Coverage](#code-coverage)
     + [Writing Tests](#writing-tests)
+
+## Introduction to Tests
+To write a `unit test` we use the `to()` or `test()` block. We can optionally wrap our tests inside of a `describe()` block to group them together. Within our `*.test.js` or `*.spec.js` file, our code would look like this:
+
+```javascript
+describe('This is the optional description of the test', () => {
+	test('This is a test', () => {
+		// The test code goes here
+	})
+})
+```
+
++ `describe()` - often used to create a `test suite` to describe what is being tested. This is included with `Jest`.
++ `test()` or `to()` - the test block containing the test code.
+
+### Snapshots
+A `snapshot` is used to tell us if the syntax of our code, line by line, has changed since the last test. The lines of code that have changed is known as the `diff`.
+
+When a test runs, a `snapshot` file is created. On every run of the test, a new `snapshot` is created and this is compared to the previous `snapshot` to identify any changes in the code. The test will `pass` if the snapshot has not changed but will `fail` if it has changed. A failed snapshot does not mean out app isn't working as expected, only that our code has changed since the last time we ran the test.
+
+We use the `toMatchSnapshot()` method to create a `snapshot` file. When we run a test, a `__snapshot__` folder is created containing a `*.test.snap.js` file. This is our `snapshot`.
+
+We need to take care to not update the test without looking at what has changed.
+
+If we want to `update` and `regenerate` a snapshot:
+
+```shell
+$ jest --updateSnapshot
+```
 
 ## Gatsby
 Unit testing is a great way to protect against errors in our code before we deploy it to production. Gatsby does not include support for `unit testing` out of the box. The most popular testing framework for React is `Jest`, which was created by Facebook. Jest is a general-purpose unit testing framework.
@@ -118,6 +149,10 @@ $ npm run test
 A `snapshot` file will generate when the `test` script runs.
 
 ### Code Coverage
+Code coverage is used as a measure to determine how much of our code is being tested. Often code coverage will highlight if the code we write has tests written. A high code coverage confirms that our code is being fully tested, but will also highlight where we need to write tests.
+
+`Jest` has an integrated test coverage reporter built-in that requires no configuration and works with `ES6` JavaScript syntax.
+
 To generate a `code coverage report` using Jest, we use the `--coverage` flag:
 
 ```javascript
@@ -148,6 +183,55 @@ src /
             headings.test.js.snap
         headings.test.js
         index.js
+```
+
+Our `Heading` component within the `src/components/headings/index.js` file looks like this:
+
+```javascript
+import classNames from "classnames"
+import PropTypes from "prop-types"
+import React from "react"
+
+const Heading = ({
+  level,
+  className = ``,
+  headingSize = ``,
+  headingSizeMedium = ``,
+  headingSizeLarge = ``,
+  children,
+  ...others
+}) => {
+  const Tag = `h` + level
+
+  const headingClasses = classNames({
+    "text-xl": headingSize === `extraLarge`,
+    "text-lg": headingSize === `large`,
+    "text-md": headingSize === `medium`,
+    "text-sm": headingSize === `small`,
+    "text-xs": headingSize === `extraSmall`,
+    "md:text-xl": headingSizeMedium === `extraLarge`,
+    "md:text-sm": headingSizeMedium === `medium`,
+    "lg:text-lg": headingSizeLarge === `large`,
+    "lg:text-md": headingSizeLarge === `medium`,
+  })
+
+  return (
+    <Tag className={classNames(headingClasses, className)} {...others}>
+      {children}
+    </Tag>
+  )
+}
+
+Heading.propTypes = {
+  level: PropTypes.oneOf([`1`, `2`, `3`, `4`, `5`, `6`]).isRequired,
+  className: PropTypes.string,
+  headingSize: PropTypes.string,
+  headingSizeMedium: PropTypes.string,
+  headingSizeLarge: PropTypes.string,
+  children: PropTypes.node.isRequired,
+}
+
+export default Heading
 ```
 
 This is a simple test file for a `Heading` component. The test file is named `headings.test.js` and will check if the component renders before generating a `snapshot` file. The snapshot file will be found inside the `__snapshots__` directory and named `headings.test.js.snap`.
@@ -187,6 +271,62 @@ describe(`Heading`, () => {
   it(`renders correctly`, () => {
     const container = render(<Heading level="1">This is a Heading</Heading>)
     expect(container).toMatchSnapshot()
+  })
+})
+```
+
+If we expand the `headings.test.js` test file, it looks like this:
+
+```javascript
+import "@testing-library/jest-dom"
+
+import { render } from "@testing-library/react"
+import React from "react"
+
+import Heading from "./index"
+
+describe(`Test the <Heading /> component.`, () => {
+  test(`The <Heading /> component renders as <h1> correctly.`, () => {
+    const heading = render(
+      <Heading level="1">The Home for Brand Management</Heading>
+    )
+    // Generate or check the snapshot file for a match
+    expect(heading).toMatchSnapshot()
+  })
+  test(`The <Heading /> component renders as <h2> correctly.`, () => {
+    const heading = render(
+      <Heading level="2">The Home for Brand Management</Heading>
+    )
+    // Generate or check the snapshot file for a match
+    expect(heading).toMatchSnapshot()
+  })
+  test(`The <Heading /> component renders as <h3> correctly.`, () => {
+    const heading = render(
+      <Heading level="3">The Home for Brand Management</Heading>
+    )
+    // Generate or check the snapshot file for a match
+    expect(heading).toMatchSnapshot()
+  })
+  test(`The <Heading /> component renders as <h4> correctly.`, () => {
+    const heading = render(
+      <Heading level="4">The Home for Brand Management</Heading>
+    )
+    // Generate or check the snapshot file for a match
+    expect(heading).toMatchSnapshot()
+  })
+  test(`The <Heading /> component renders as <h5> correctly.`, () => {
+    const heading = render(
+      <Heading level="5">The Home for Brand Management</Heading>
+    )
+    // Generate or check the snapshot file for a match
+    expect(heading).toMatchSnapshot()
+  })
+  test(`The <Heading /> component renders as <h6> correctly.`, () => {
+    const heading = render(
+      <Heading level="6">The Home for Brand Management</Heading>
+    )
+    // Generate or check the snapshot file for a match
+    expect(heading).toMatchSnapshot()
   })
 })
 ```
