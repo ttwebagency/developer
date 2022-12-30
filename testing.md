@@ -101,6 +101,14 @@ module.exports = {
 }
 ```
 
++ `transform` - this section tells Jest that all `js` and `jsx` files need to be transformed using a `jest-preprocess.js` file in the project root. The `jest-preprocess.js` file is where we set up our `Babel` config.
++ `testPathIgnorePatterns` - this option tells Jest to ignore any tests in the `node_modules` or `.cache` directories.
++ `transformIgnorePatterns` - Gatsby includes un-transpiled `ES6` code. By default, Jest doesn't try to transform code inside `node_modules` so it will return an error. This is because `gatsby-browser-entry.js` isn't being transpiled before running in Jest. We can fix this by including the `gatsby` module here.
+
+The `globals` section sets `__PATH_PREFIX__` which is usually set by Gatsby and which some components need. We need to also set `testURL` to a valid URL because some DOM APIs such as `localstorage` are unhappy with the default `about:blank`.
+
+We can use the `setupFiles` array that lets us list files that will be included before all tests are run.
+
 Here is the `jest-preprocess.js` file, also in the root of the project folder:
 
 ```javascript
