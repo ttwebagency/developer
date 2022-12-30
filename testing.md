@@ -4,6 +4,7 @@
     + [Setup](#setup)
     + [Configuration](#configuration)
     + [Running Tests](#running-tests)
+    + [Code Coverage](#code-coverage)
     + [Writing Tests](#writing-tests)
 
 ## Gatsby
@@ -100,9 +101,10 @@ We can update the `test` script inside the `package.json` file to run the `jest`
 
 ```javascript
 // package.json
+
 {
     "scripts": {
-        "test": "jest
+        "test": "jest"
     }
 }
 ```
@@ -114,6 +116,26 @@ $ npm run test
 ```
 
 A `snapshot` file will generate when the `test` script runs.
+
+### Code Coverage
+To generate a `code coverage report` using Jest, we use the `--coverage` flag:
+
+```javascript
+// package.json
+
+{
+    "scripts": {
+        "test": "jest",
+        "test:coverage": "jest --coverage"
+    }
+}
+```
+
+We can then generate/run the coverage report:
+
+```shell
+$ npm run test:coverage
+```
 
 ### Writing Tests
 Test files can either be put into a `__tests__` directory or we can put test files elsewhere, usually next to the component itself. Test files have the file extension of `.spec.js` or `.test.js`. For example, if we had a component named `heading.js` then the test file could be named `heading.test.js`.
