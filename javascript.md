@@ -1,9 +1,21 @@
 # JavaScript
 
++ [ESLint](#eslint)
+	+ [Disable Rules](#disable-rules)
 + [Modules](#modules)
     + [CommonJS](#commonjs)
     + [ESModules](#esmodules)
     + [Default](#default)
+
+## ESLint
+
+### Disable Rules
+The `// eslint-disable-next-line` comment can be placed above a line of code and this will disable a specific rule, or all rules, for that line.
+
+```javascript
+// eslint-disable-next-line no-unused-vars
+let x = 1; 
+```
 
 ## Modules
 A module is a piece of code in a file that we can call and use from other files. Both `CommonJS` and `ESModules (ESM)` are two examples of widely used module types.
