@@ -3,7 +3,6 @@
 + [Enumeration attack](#enumeration-attack)
 	+ [reCAPTCHA and CAPTCHA](#recaptcha-and-captcha)
 	+ [Implementing reCAPTCHA and CAPTCHA](#implementing-recaptcha-and-captcha)
-	+ [Setup](#setup)
 	+ [Useful Links](#useful-links)
 
 ## Enumeration attack
@@ -45,31 +44,6 @@ An `invisible reCAPTCHA` is exactly the same - it just doesn't have a checkbox a
 
 With `invisible reCAPTCHA`, no user interaction is required at all. 
 
-### Setup
-The first step is to go to the [https://www.google.com/recaptcha/about/](https://www.google.com/recaptcha/about/) `Google reCAPTCHA` page and select either `Get Started with Enterprise` button or `v3 Admin Console` link.
-
-Register your website by filling out the form and accepting the terms of service. You will be given a `Site key` and a `Secret key`. The form for the `reCAPTCHA v3` is here: `https://www.google.com/recaptcha/admin/create`
-
-Include the Google reCAPTCHA `JavaScript library` in the `head` of your HTML file by adding the following line of code:
-
-```html
-<script src='https://www.google.com/recaptcha/api.js'></script>
-```
-
-On the specific page you want the Google reCAPTCHA to be invisible, you can add the following line of JavaScript code to the `head` of the HTML file:
-
-```javascript
-<script>
-	grecaptcha.ready(function() { 
-		grecaptcha.execute('your_site_key', {
-			action: 'action_name'
-		}).then(function(token) {  
-			// do something with token 
-		}); 
-	});
-</script>
-```
-
 ### Useful Links
 
 + https://www.upguard.com/blog/what-is-an-enumeration-attack
@@ -79,3 +53,5 @@ On the specific page you want the Google reCAPTCHA to be invisible, you can add 
 + https://developers.google.com/recaptcha/docs/invisible
 + https://developers.google.com/recaptcha/docs/versions
 + https://datadome.co/learning-center/invisible-recaptcha-choosing-recaptcha
++ https://www.youtube.com/watch?v=vrbyaOoZ-4Q
++ https://blog.logrocket.com/implement-recaptcha-react-application/
