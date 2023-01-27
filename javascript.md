@@ -1,11 +1,47 @@
 # JavaScript
 
++ [Map](#map)
 + [ESLint](#eslint)
 	+ [Disable Rules](#disable-rules)
 + [Modules](#modules)
     + [CommonJS](#commonjs)
     + [ESModules](#esmodules)
     + [Default](#default)
+
+## Map
+JavaScript's `map()` function is used to apply a specific function to each element in an array and return a new array with the results. The function pased to `map()` is called for each element in the original array and its return value is used to create a new element in the resulting array. The original array is not modified.
+
+```javascript
+let numbers = [1, 2, 3, 4];
+let doubleNumbers = numbers.map(function(num) {
+	return num * 2;
+});
+
+console.log(doubleNumbers);		// returns new array: [2, 4, 6, 8]
+```
+
+`Object.values()` is a method in JavaScript that returns an array containing the values of the properties of a given object. The returned array is in the same order as that obtained by looping over the properties of the object manually.
+
+```javascript
+let myObj = {a:1, b:2, c:3};
+let values = Object.values(myObj);
+
+console.log(values);		// returns an array named values: [1, 2, 3]
+```
+
+This is only supported by modern browsers. For older browsers, a `polyfill` or library like `lodash` could be used that has the implementation of `Object.values()`.
+
+`Object.values()` returns and array containing the `values` of the `properties` of an object. This doesn't return the keys or indexes of the properties. However, we can use the `Object.entries()` method to get an array of `key-value` pairs and then use `map()` to iterate over the array and extract the `key` and `index` of each property.
+
+```javascript
+let myObj = {a:1, b:2, c:3};
+let entries = Object.entries(myObj);
+let keyIndex = entries.map(([key, value], index) => ({key, index}));
+
+console.log(keyIndex);		// returns an array named keyIndex: [{ key: 'a', index: 0 }, { key: 'b', index: 1 }, { key: 'c', index: 2 }]
+```
+
+The `map()` method can be used to iterate over the array and return an object that contains the `key` and `index` of that property.
 
 ## ESLint
 
